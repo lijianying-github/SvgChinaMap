@@ -1,12 +1,10 @@
 # 基于svg文件绘制中国地图
 
-## 已实现功能
+## 功能特色
 1. svg解析以及地图绘制
 1. 地区区域封装以及点击高亮
 1. 区域颜色层级展示封装实现
 
-
-通过svg文件绘制中国地图
 ## 涉及技术
 * xml文件解析
 * svg 路径信息与Path转换
@@ -26,6 +24,8 @@
 
 ## 效果图
 ![效果图](https://github.com/lijianying-github/SvgChinaMap/blob/master/screenshot/effect.png)
+
+## 欢迎指正以及探讨实现新特效
 
 
 

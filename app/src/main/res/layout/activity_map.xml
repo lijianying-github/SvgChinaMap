@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context="com.nemo.chinamap.MapActivity">
+    tools:context="com.chinamap.com.MapActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
     </LinearLayout>
 
 
-    <com.nemo.chinamap.map.ChinaMapView
+    <com.map.ChinaMapView
         android:id="@+id/view_map"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

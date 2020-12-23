@@ -1,4 +1,4 @@
-package com.nemo.chinamap.map;
+package com.map;
 
 /**
  * Description: 省份数据实体

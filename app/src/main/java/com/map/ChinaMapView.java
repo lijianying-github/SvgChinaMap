@@ -1,4 +1,4 @@
-package com.nemo.chinamap.map;
+package com.map;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,13 +12,13 @@ import android.graphics.Region;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.v4.view.GestureDetectorCompat;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.nemo.chinamap.R;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GestureDetectorCompat;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,10 +35,7 @@ import java.util.Map;
  */
 public class ChinaMapView extends View {
 
-    private static final String TAG = "ChinaMapView";
-
     private Paint paint;
-
     private int miniWidth;
     private int miniHeight;
     private int provinceTextSize;
@@ -58,32 +55,30 @@ public class ChinaMapView extends View {
 
     private Drawable drawable;
 
-    private int[] colorArray = new int[]{0xFF239BD7, 0xFF30A9E5, 0xFF80CBF1, 0xFFFFFFFF};
+    private final int[] colorArray = new int[]{0xFF239BD7, 0xFF30A9E5, 0xFF80CBF1, 0xFFFFFFFF};
 
     private GestureDetectorCompat gestureDetectorCompat;
 
     public ChinaMapView(Context context) {
         super(context);
-        init(null, 0);
+        init();
     }
 
     public ChinaMapView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(attrs, 0);
+        init();
     }
 
     public ChinaMapView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init(attrs, defStyle);
+        init();
     }
 
     /**
      * 初始化加载地图数据并设置相关手势监听
      *
-     * @param attrs    属性
-     * @param defStyle 默认属性
      */
-    private void init(AttributeSet attrs, int defStyle) {
+    private void init() {
         paint = new Paint();
         paint.setAntiAlias(true);
         miniWidth = getContext().getResources().getDimensionPixelSize(R.dimen.map_min_width);
@@ -116,7 +111,7 @@ public class ChinaMapView extends View {
 //                handlerTouch((int) x, (int) y);
 //            }
         });
-        drawable = getResources().getDrawable(R.drawable.scale_rule);
+        drawable = ContextCompat.getDrawable(getContext(),R.drawable.scale_rule);
 
         bottomPadding = getResources().getDimensionPixelSize(R.dimen.map_bottom_padding);
 
@@ -158,7 +153,7 @@ public class ChinaMapView extends View {
 
         switch (widthMode) {
             case MeasureSpec.EXACTLY:
-                viewWidth = width > miniWidth ? width : miniWidth;
+                viewWidth = Math.max(width, miniWidth);
                 break;
             case MeasureSpec.AT_MOST:
             case MeasureSpec.UNSPECIFIED:
@@ -182,7 +177,7 @@ public class ChinaMapView extends View {
                 break;
             case MeasureSpec.AT_MOST:
             case MeasureSpec.UNSPECIFIED:
-                viewHeight = miniHeight > computeHeight ? miniHeight : computeHeight;
+                viewHeight = Math.max(miniHeight, computeHeight);
                 break;
         }
 
@@ -195,6 +190,7 @@ public class ChinaMapView extends View {
                 MeasureSpec.makeMeasureSpec(viewHeight + bottomPadding, MeasureSpec.EXACTLY));
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return gestureDetectorCompat.onTouchEvent(event);
@@ -205,13 +201,12 @@ public class ChinaMapView extends View {
      *
      * @param x 当前x
      * @param y 当前y
-     * @return 是否触摸到区域部分
      */
-    private boolean handlerTouch(int x, int y) {
+    private void handlerTouch(int x, int y) {
         ProvinceItem provinceItem = null;
         final List<ProvinceItem> list = itemList;
         if (list == null) {
-            return false;
+            return;
         }
         for (ProvinceItem temp : list) {
             if (temp.isTouched((int) (x / scale), (int) (y / scale))) {
@@ -224,7 +219,6 @@ public class ChinaMapView extends View {
             selectedItem = provinceItem;
             postInvalidate();
         }
-        return provinceItem != null;
     }
 
     /**
@@ -314,10 +308,10 @@ public class ChinaMapView extends View {
                 paint.clearShadowLayer();
                 paint.setTextSize(provinceTextSize);
                 String provinceName = selectedItem.getProvinceName();
-                canvas.drawText(provinceName, width / 2, provinceMargin, paint);
+                canvas.drawText(provinceName, width >> 1, provinceMargin, paint);
 
                 int number = selectedItem.getPersonNumber();
-                canvas.drawText(number + "人", width / 2, provinceMargin + provinceTextSize + numberMargin, paint);
+                canvas.drawText(number + "人", width >> 1, provinceMargin + provinceTextSize + numberMargin, paint);
 
             }
 

@@ -16,14 +16,14 @@
 
 ## 使用方式
 ```xml
-<com.nemo.mapdemo.map.ChinaMapView
+ <com.map.ChinaMapView
         android:id="@+id/view_map"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 ```
 
 ## 效果图
-![效果图](https://github.com/lijianying-github/SvgChinaMap/blob/master/screenshot/effect.png)
+![效果图](/screenshot/effect.png)
 
 ## 欢迎指正以及探讨实现新特效
 

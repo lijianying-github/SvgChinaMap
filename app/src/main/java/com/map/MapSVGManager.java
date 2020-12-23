@@ -1,4 +1,4 @@
-package com.nemo.chinamap.map;
+package com.map;
 
 import android.content.Context;
 import android.graphics.Path;
@@ -6,8 +6,6 @@ import android.graphics.RectF;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-
-import com.nemo.chinamap.R;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;

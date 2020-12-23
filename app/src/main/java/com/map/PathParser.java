@@ -1,4 +1,4 @@
-package com.nemo.chinamap.map;
+package com.map;
 
 import android.graphics.Path;
 import android.util.Log;

@@ -1,13 +1,14 @@
-package com.nemo.chinamap;
+package com;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.nemo.chinamap.map.ChinaMapView;
-import com.nemo.chinamap.map.ProvinceData;
+import com.map.ChinaMapView;
+import com.map.ProvinceData;
+import com.map.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

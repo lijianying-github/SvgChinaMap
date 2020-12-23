@@ -1,7 +1,10 @@
-# ChinaMap
+# 基于svg文件绘制中国地图
 
-<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg" alt="996.icu"></a>
-[![LICENSE](https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+## 已实现功能
+1. svg解析以及地图绘制
+1. 地区区域封装以及点击高亮
+1. 区域颜色层级展示封装实现
+
 
 通过svg文件绘制中国地图
 ## 涉及技术
@@ -22,7 +25,7 @@
 ```
 
 ## 效果图
-![效果图](./screenshot/effect.png)
+![效果图](https://github.com/lijianying-github/SvgChinaMap/blob/master/screenshot/effect.png)
 
 
 
